@@ -1,0 +1,67 @@
+<div class="container">
+  <h1 class="title">Communication Form</h1>
+  <form (ngSubmit)="submitForm()" [formGroup]="communicationForm" class="form">
+    <!-- Form fields here -->
+    <!-- ... -->
+
+    <!-- Link input field -->
+    <div class="form-group">
+      <label for="link">Enter Link</label>
+      <input type="text" id="link" formControlName="link" required>
+      <div class="invalid-feedback" *ngIf="communicationForm.controls.link.invalid && communicationForm.controls.link.touched">
+        Please enter a valid URL.
+      </div>
+    </div>
+
+    <!-- Customer name input field -->
+    <div class="form-group">
+      <label for="customerName">Customer Name</label>
+      <input type="text" id="customerName" formControlName="customerName" required>
+      <div class="invalid-feedback" *ngIf="communicationForm.controls.customerName.invalid && communicationForm.controls.customerName.touched">
+        Please enter a valid alphanumeric name (up to 100 characters).
+      </div>
+    </div>
+
+    <!-- Mobile number input field -->
+    <div class="form-group">
+      <label for="mobileNo">Mobile No</label>
+      <input type="text" id="mobileNo" formControlName="mobileNo" required>
+      <div class="invalid-feedback" *ngIf="communicationForm.controls.mobileNo.invalid && communicationForm.controls.mobileNo.touched">
+        Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.
+      </div>
+    </div>
+
+    <!-- Email input field -->
+    <div class="form-group">
+      <label for="email">Email Id</label>
+      <input type="email" id="email" formControlName="email" required>
+      <div class="invalid-feedback" *ngIf="communicationForm.controls.email.invalid && communicationForm.controls.email.touched">
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <!-- LAN number input field -->
+    <div class="form-group">
+      <label for="lanNo">LAN No</label>
+      <input type="text" id="lanNo" formControlName="lanNo" required>
+      <div class="invalid-feedback" *ngIf="communicationForm.controls.lanNo.invalid && communicationForm.controls.lanNo.touched">
+        Please enter a LAN number up to 16 characters long.
+      </div>
+    </div>
+
+    <!-- Disable the button until all validations are satisfied -->
+
+    <button type="submit" class="btn-primary" [disabled]="isLoading || communicationForm.invalid">
+      <span *ngIf="!isLoading">Submit</span>
+      <span *ngIf="isLoading" class="spinner"></span>
+    </button>
+    </form>
+    
+</div>
+
+  <!-- Popup message element -->
+<!-- Popup message element -->
+<div class="popup" *ngIf="showPopup">
+  <p>{{ popupMessage }}</p>
+  <button class="btn btn-primary" (click)="closePopup()">OK</button>
+</div>
